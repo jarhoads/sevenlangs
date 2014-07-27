@@ -55,8 +55,8 @@ two_d_list readFile := method(f,
 
 							self := doFile(f);
 
-							self
 						)
+
 
 
 

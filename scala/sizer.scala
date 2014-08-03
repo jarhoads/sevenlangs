@@ -77,10 +77,15 @@ def getPageSizeConcurrently() = {
 		}
 	}
 
-	for(i<-1 to (urls.size*2)){
+	for(i<-1 to (urls.size)){
 		receive{
 			case(url,size:Int) =>
 				println("size for " + url + ": " + size)
+		}	
+		
+	}
+	for(i<-1 to (urls.size)){
+		receive{
 			case(url,links:List[String]) => {
 				println("number of links for " + url + ": " + links.size)
 
@@ -91,7 +96,7 @@ def getPageSizeConcurrently() = {
 					}
 				}
 			}
-		}	
+		}
+		}
 		
-	}
 }

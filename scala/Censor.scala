@@ -9,9 +9,9 @@ trait Censor{
 
 	val splitLines = Source.fromFile("censor.txt").getLines().map(l => i.split(" "))
 
-	// I don't like this being a var... I'll change it eventually
-	var replace = scala.collection.mutable.Map[String,String]()
-	splitLines.foreach{line => replace += (line(0)->line(1))}
+	// I started writing a toStringMap function but 
+	// then realized I was re-implementing foldLeft... oops ;-P
+	val replace = (Map[String,String]() /: splitLines){(map,line) => (line(0)->line(1)) ++ map} 
 	
 	def replaceWord(checkWord:String):String = replace.getOrElse(checkWord,checkWord)
 }

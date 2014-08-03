@@ -7,10 +7,14 @@ object TicTacToe{
 
 		val validInput = (firstPlayer == "X" || firstPlayer == "O")
 		if(!validInput) main(args)
+		else{
+		
+			val game = if(firstPlayer == "X") new PlayGame() else new PlayGame(List("O","X"))
 
-		val game = if(firstPlayer == "X") new PlayGame() else new PlayGame(List("O","X"))
+			game.play
+			
+		}
 
-		game.play
 			
 	}
 	

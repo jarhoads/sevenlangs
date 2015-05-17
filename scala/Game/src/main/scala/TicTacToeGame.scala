@@ -1,8 +1,19 @@
 class TicTacToeGame(gameBoard:Board){
 	
+	// Using WinsMatch will remove the need to use wins(direction)
+	def winsMatch(direction:List[List[String]]):Boolean = {
+		direction.exists(dir => dir match {
+			case ["X","X","X"] => true
+			case ["O","O","O"] => true
+			case _ => false  
+			} 
+		)
+	}
 	def wins(direction: List[List[String]])(symb:String):Boolean = {
-		direction.map(dir => dir.forall(e => e == symb))
-					  .exists(x => x == true)
+
+		direction.exists(dir => dir.forall(e => e == symb))
+		//direction.map(dir => dir.forall(e => e == symb))
+		//			  .exists(x => x == true)
 	}
 
 	def rowsWin:String => Boolean = wins(gameBoard.rows) _
@@ -21,8 +32,11 @@ class TicTacToeGame(gameBoard:Board){
 	def oWins:Boolean = rowsWinO || colsWinO || diagsWinO
 
 	def tiedGame:Boolean = {
-		(gameBoard.rows.forall(row => row.forall(element => (element == "X" || element == "O")))) &&
-		!xWins && !oWins
+		!xWins && !oWins &&
+		(gameBoard.rows.forall(row => 
+			row.forall(element => 
+				(element == "X" || element == "O")))) 
+
 	}
 
 	def getBoard:List[String] = { gameBoard.getBoard }

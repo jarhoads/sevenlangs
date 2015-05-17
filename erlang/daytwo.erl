@@ -1,7 +1,5 @@
 -module(daytwo).
--export([get_val/2]).
--export([shop_items/1]).
--export([show_winner/1]).
+-export([get_val/2],[shop_items/1],[show_winner/1]).
 
 get_val([],_) -> false;
 get_val([{K,V}|_],Key) when K =:= Key -> V;
@@ -11,6 +9,8 @@ shop_items(ShopList) -> [{Item,Quant * Price} || {Item,Quant,Price} <- ShopList]
 
 
 % I should probably put this in a seperate module
+% when I started thinking of doing it this way I didn't
+% think it would take this much code
 
 % I feel like this could be done with lists:foldl
 % I ran out of time to figure it out and wanted to move on
